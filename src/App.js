@@ -1,23 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react'
+import Canvas from './components/Canvas';
 
 function App() {
+  function onChange(e){
+    setColor(e.target.value)
+  }
+  const [color, setColor] = useState("#000000");
+  const [strokeSize, setStrokeSize] = useState(5);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <input type='color' onChange={e=>onChange(e)} defaultValue='#000000'/>
+        <input type='number' value={strokeSize} onChange={e=>setStrokeSize(e.target.value)}/>
       </header>
+      <Canvas color={color} strokeSize={strokeSize}></Canvas>
     </div>
   );
 }
